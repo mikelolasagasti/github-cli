@@ -82,7 +82,7 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 
 %if %{with check}
 %check
-%gocheck -d internal/docs
+%gocheck -d internal/docs -d pkg/cmd/gist/shared
 %endif
 
 %files
