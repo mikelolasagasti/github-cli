@@ -8,7 +8,7 @@ Version:                0.3.0
 %gometa
 
 %global common_description %{expand:
-Stylesheet-based markdown rendering for your CLI apps 💇🏻‍♀️.}
+Stylesheet-based markdown rendering for your CLI apps.}
 
 %global golicenses      LICENSE
 %global godocs          examples README.md examples styles/README.md\\\
@@ -16,7 +16,7 @@ Stylesheet-based markdown rendering for your CLI apps 💇🏻‍♀️.}
 
 Name:           %{goname}
 Release:        1%{?dist}
-Summary:        Stylesheet-based markdown rendering for your CLI apps 💇🏻‍♀️
+Summary:        Stylesheet-based markdown rendering for your CLI apps
 
 License:        MIT
 URL:            %{gourl}
@@ -41,8 +41,6 @@ BuildRequires:  golang(github.com/yuin/goldmark/extension/ast)
 BuildRequires:  golang(github.com/yuin/goldmark/parser)
 BuildRequires:  golang(github.com/yuin/goldmark/renderer)
 BuildRequires:  golang(github.com/yuin/goldmark/util)
-#remove
-BuildRequires:  git
 
 %description
 %{common_description}
