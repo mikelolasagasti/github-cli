@@ -25,7 +25,7 @@ Patch0001:      https://github.com/cli/shurcooL-graphql/commit/a4a48d3af0f4d1e93
 Patch0002:      https://github.com/cli/shurcooL-graphql/commit/53d29f0eb7f5f1838b5f4f137b215e19bb10a5c9.patch
 
 BuildRequires:  golang(github.com/graph-gophers/graphql-go)
-BuildRequires:  golang(github.com/graph-gophers/graphql-go/example/starwars)
+#BuildRequires:  golang(github.com/graph-gophers/graphql-go/example/starwars)
 BuildRequires:  golang(github.com/graph-gophers/graphql-go/relay)
 BuildRequires:  golang(golang.org/x/net/context/ctxhttp)
 
