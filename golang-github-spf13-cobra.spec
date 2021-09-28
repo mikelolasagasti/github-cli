@@ -45,6 +45,7 @@ Summary:        Commander for modern Go CLI interactions
 License:        ASL 2.0
 URL:            %{gourl}
 Source0:        %{gosource}
+Patch0001:      https://github.com/spf13/cobra/commit/2a5277810f24ae1b8a200198be8dd855a9041a0e.patch
 
 BuildRequires:  golang(github.com/cpuguy83/go-md2man/v2/md2man)
 BuildRequires:  golang(github.com/mitchellh/go-homedir)
@@ -59,6 +60,7 @@ BuildRequires:  golang(gopkg.in/yaml.v2)
 
 %prep
 %goprep
+%patch0001 -p1
 mv cobra/README.md README-cobra.md
 
 %build
