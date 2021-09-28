@@ -59,6 +59,7 @@ BuildRequires:  golang(github.com/creack/pty)
 BuildRequires:  golang(github.com/google/go-cmp/cmp)
 BuildRequires:  golang(github.com/stretchr/testify/assert)
 BuildRequires:  golang(github.com/stretchr/testify/require)
+BuildRequires:  git
 %endif
 
 %description
