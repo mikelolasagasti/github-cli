@@ -38,6 +38,8 @@ BuildRequires:  golang(golang.org/x/net/context/ctxhttp)
 
 %prep
 %goprep
+%patch0001 -p1
+%patch0002 -p1
 
 %install
 %gopkginstall
