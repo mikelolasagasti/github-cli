@@ -43,6 +43,6 @@ BuildRequires:  golang(golang.org/x/sys/unix)
 %gopkgfiles
 
 %changelog
-* Sun Sep 26 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.5.0-1
+* Sun Sep 28 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.5.0-1
 - Initial package
 
