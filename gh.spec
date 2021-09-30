@@ -98,6 +98,15 @@ install -Dp %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %license LICENSE
 %doc docs README.md script/changelog
 %{_bindir}/*
+%dir %{_datadir}/bash-completion
+%dir %{_datadir}/bash-completion/completions
+%{_datadir}/bash-completion/completions/%{name}
+%dir %{_datadir}/fish
+%dir %{_datadir}/fish/vendor_completions.d
+%{_datadir}/fish/vendor_completions.d/%{name}.fish
+%dir %{_datadir}/zsh
+%dir %{_datadir}/zsh/site-functions
+%{_datadir}/zsh/site-functions/_%{name}
 
 %gopkgfiles
 
