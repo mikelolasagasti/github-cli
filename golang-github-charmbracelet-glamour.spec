@@ -11,8 +11,7 @@ Version:                0.3.0
 Stylesheet-based markdown rendering for your CLI apps.}
 
 %global golicenses      LICENSE
-%global godocs          examples README.md examples styles/README.md\\\
-                        styles/gallery/README.md
+%global godocs          README.md
 
 Name:           %{goname}
 Release:        1%{?dist}
@@ -21,6 +20,7 @@ Summary:        Stylesheet-based markdown rendering for your CLI apps
 License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
+# merged - change tests because of reflow v0.3.0
 Patch0001:      https://github.com/charmbracelet/glamour/commit/ea285ca64f6ea5c179861581b01433902ecd1fd1.patch
 
 BuildRequires:  golang(github.com/alecthomas/chroma)
