@@ -71,6 +71,9 @@ BuildRequires:  git
 %goprep
 
 %build
+export LDFLAGS="-X github.com/cli/cli/internal/build.Version=2.0.0  \
+                -X github.com/cli/cli/internal/build.Date=2021-09-26"
+
 %gobuild -o %{gobuilddir}/cmd/%{name} %{goipath}/cmd/%{name}
 
 %{gobuilddir}/cmd/%{name} completion bash > %{name}.bash
