@@ -81,7 +81,7 @@ BuildRequires:  git
 %install
 %gopkginstall
 install -m 0755 -vd                     %{buildroot}%{_bindir}
-install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -m 0755 -vp %{gobuilddir}/cmd/* %{buildroot}%{_bindir}/
 
 install -Dp %{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
 install -Dp %{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
