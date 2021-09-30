@@ -12,11 +12,11 @@ A golang library for building interactive and accessible prompts with full
 support for windows and posix terminals.}
 
 %global golicenses      LICENSE terminal/LICENSE.txt
-%global godocs          examples CONTRIBUTING.md README.md terminal/README.md
+%global godocs          CONTRIBUTING.md README.md terminal/README.md
 
 Name:           %{goname}
 Release:        1%{?dist}
-Summary:        A golang library for building interactive and accessible prompts with full support for windows and posix terminals
+Summary:        A golang library for building interactive and accessible prompts
 
 License:        MIT
 URL:            %{gourl}
