@@ -44,7 +44,7 @@ BuildRequires:  golang(github.com/muesli/reflow/ansi)
 BuildRequires:  golang(github.com/muesli/reflow/truncate)
 BuildRequires:  golang(github.com/muesli/termenv)
 BuildRequires:  golang(github.com/shurcooL/githubv4)
-BuildRequires:  golang(github.com/shurcooL/graphql)
+BuildRequires:  golang(github.com/cli/shurcooL-graphql)
 BuildRequires:  golang(github.com/spf13/cobra)
 BuildRequires:  golang(github.com/spf13/pflag)
 BuildRequires:  golang(github.com/stretchr/testify/mock)
@@ -69,10 +69,11 @@ BuildRequires:  git
 
 %prep
 %goprep
+find . -name "*.go" -type f -exec sed -i 's:shurcooL/graphql:cli/shurcooL-graphql:' '{}' \;
 
 %build
 export LDFLAGS="-X github.com/cli/cli/internal/build.Version=2.0.0  \
-                -X github.com/cli/cli/internal/build.Date=2021-09-26"
+        -X github.com/cli/cli/internal/build.Date=2021-09-26"
 
 %gobuild -o %{gobuilddir}/cmd/%{name} %{goipath}/cmd/%{name}
 
