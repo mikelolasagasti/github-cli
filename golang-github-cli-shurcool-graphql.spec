@@ -4,7 +4,7 @@
 # https://github.com/cli/shurcooL-graphql
 %global goipath         github.com/cli/shurcooL-graphql
 Version:                0
-%global commit          53d29f0eb7f5f1838b5f4f137b215e19bb10a5c9
+%global commit          0f7232a2bf7e6d8f393025a8f5cafbd219a7ebeb
 
 %gometa
 
