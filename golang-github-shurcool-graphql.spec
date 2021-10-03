@@ -22,7 +22,8 @@ License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
 # Patches from GitHub fork
-Patch0001:      https://github.com/cli/shurcooL-graphql/commit/0f7232a2bf7e6d8f393025a8f5cafbd219a7ebeb.patch
+# https://github.com/shurcooL/graphql/pull/57
+Patch0001:      https://patch-diff.githubusercontent.com/raw/shurcooL/graphql/pull/57.patch
 
 BuildRequires:  golang(github.com/graph-gophers/graphql-go)
 # Examples are not packaged
