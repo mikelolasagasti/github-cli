@@ -4,7 +4,6 @@
 # https://github.com/cli/shurcooL-graphql
 %global goipath         github.com/cli/shurcooL-graphql
 Version:                0
-%global tag             named-queries-declarative
 %global commit          53d29f0eb7f5f1838b5f4f137b215e19bb10a5c9
 
 %gometa
@@ -38,6 +37,7 @@ BuildRequires:  golang(golang.org/x/net/context/ctxhttp)
 
 %prep
 %goprep
+find . -name "*.go" -type f -exec sed -i 's:shurcooL/graphql:cli/shurcooL-graphql:' '{}' \;
 
 %install
 %gopkginstall
