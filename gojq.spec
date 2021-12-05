@@ -40,9 +40,7 @@ BuildRequires:  golang(github.com/google/go-cmp/cmp)
 %goprep
 
 %build
-for cmd in cmd/* ; do
-  %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
-done
+%gobuild -o %{gobuilddir}/cmd/%{name} %{goipath}/cmd/%{name}
 
 %install
 %gopkginstall
