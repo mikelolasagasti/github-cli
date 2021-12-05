@@ -15,26 +15,14 @@ support for windows and posix terminals.}
 %global godocs          CONTRIBUTING.md README.md terminal/README.md
 
 Name:           %{goname}
-Release:        1%{?dist}
+Release:        %autorelease
 Summary:        A golang library for building interactive and accessible prompts
 
 License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
 
-BuildRequires:  golang(github.com/kballard/go-shellquote)
-BuildRequires:  golang(github.com/mgutz/ansi)
-BuildRequires:  golang(golang.org/x/term)
-BuildRequires:  golang(golang.org/x/text/width)
-
-%if %{with check}
-# Tests
-BuildRequires:  golang(github.com/hinshun/vt10x)
-BuildRequires:  golang(github.com/kr/pty)
-BuildRequires:  golang(github.com/Netflix/go-expect)
-BuildRequires:  golang(github.com/stretchr/testify/assert)
-BuildRequires:  golang(github.com/stretchr/testify/require)
-%endif
+BuildRequires:  go-rpm-macros
 
 %description
 %{common_description}
@@ -43,6 +31,9 @@ BuildRequires:  golang(github.com/stretchr/testify/require)
 
 %prep
 %goprep
+
+%generate_buildrequires
+%go_generate_buildrequires
 
 %install
 %gopkginstall
@@ -55,6 +46,4 @@ BuildRequires:  golang(github.com/stretchr/testify/require)
 %gopkgfiles
 
 %changelog
-* Sun Sep 26 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 2.3.2-1
-- Initial package
-
+%autochangelog
