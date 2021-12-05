@@ -3,7 +3,7 @@
 
 # https://github.com/cli/oauth
 %global goipath         github.com/cli/oauth
-Version:                0.8.0
+Version:                0.9.0
 
 %gometa
 
@@ -15,14 +15,14 @@ client apps.}
 %global godocs          README.md
 
 Name:           %{goname}
-Release:        1%{?dist}
+Release:        %autorelease
 Summary:        A library for performing OAuth Device flow and Web application flow in Go client apps
 
 License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
 
-BuildRequires:  golang(github.com/cli/browser)
+BuildRequires:  go-rpm-macros
 
 %description
 %{common_description}
@@ -31,6 +31,9 @@ BuildRequires:  golang(github.com/cli/browser)
 
 %prep
 %goprep
+
+%generate_buildrequires
+%go_generate_buildrequires
 
 %install
 %gopkginstall
@@ -43,6 +46,4 @@ BuildRequires:  golang(github.com/cli/browser)
 %gopkgfiles
 
 %changelog
-* Sun Sep 26 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 0.8.0-1
-- Initial package
-
+%autochangelog
