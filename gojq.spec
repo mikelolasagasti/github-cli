@@ -21,10 +21,7 @@ License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
 
-BuildRequires:  golang(github.com/itchyny/timefmt-go)
-BuildRequires:  golang(github.com/mattn/go-isatty)
-BuildRequires:  golang(github.com/mattn/go-runewidth)
-BuildRequires:  golang(gopkg.in/yaml.v3)
+BuildRequires:  go-rpm-macros
 
 %if %{with check}
 # Tests
@@ -38,6 +35,9 @@ BuildRequires:  golang(github.com/google/go-cmp/cmp)
 
 %prep
 %goprep
+
+%generate_buildrequires
+%go_generate_buildrequires
 
 %build
 %gobuild -o %{gobuilddir}/cmd/%{name} %{goipath}/cmd/%{name}
