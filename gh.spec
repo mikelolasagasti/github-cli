@@ -21,6 +21,7 @@ License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
 
+BuildRequires:  git
 BuildRequires:  go-rpm-macros
 
 %description
