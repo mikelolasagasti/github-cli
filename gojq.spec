@@ -23,11 +23,6 @@ Source0:        %{gosource}
 
 BuildRequires:  go-rpm-macros
 
-%if %{with check}
-# Tests
-BuildRequires:  golang(github.com/google/go-cmp/cmp)
-%endif
-
 %description
 %{common_description}
 
