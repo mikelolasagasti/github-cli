@@ -11,7 +11,7 @@ Version:                2.3.0
 GitHub’s official command line tool.}
 
 %global golicenses      LICENSE
-%global godocs          docs README.md script/changelog
+%global godocs          README.md
 
 Name:           gh
 Release:        %autorelease
@@ -65,7 +65,7 @@ install -Dp %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %files
 %license LICENSE
-%doc docs README.md script/changelog
+%doc README.md
 %{_bindir}/*
 %dir %{_datadir}/bash-completion
 %dir %{_datadir}/bash-completion/completions
