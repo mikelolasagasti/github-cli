@@ -14,7 +14,7 @@ Go helpers to open URLs, files, or readers in a web browser.}
 %global godocs          examples README.md
 
 Name:           %{goname}
-Release:        1%{?dist}
+Release:        %autorelease
 Summary:        Go helpers to open URLs, files, or readers in a web browser
 
 # Upstream license specification: BSD-2-Clause
@@ -41,6 +41,4 @@ Source0:        %{gosource}
 %gopkgfiles
 
 %changelog
-* Sun Sep 26 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 1.1.0-1
-- Initial package
-
+%autochangelog
