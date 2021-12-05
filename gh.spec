@@ -14,53 +14,14 @@ GitHub’s official command line tool.}
 %global godocs          docs README.md script/changelog
 
 Name:           gh
-Release:        1%{?dist}
+Release:        %autorelease
 Summary:        GitHub’s official command line tool
 
 License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
 
-BuildRequires:  golang(github.com/AlecAivazis/survey/v2)
-BuildRequires:  golang(github.com/AlecAivazis/survey/v2/core)
-BuildRequires:  golang(github.com/AlecAivazis/survey/v2/terminal)
-BuildRequires:  golang(github.com/briandowns/spinner)
-BuildRequires:  golang(github.com/charmbracelet/glamour)
-BuildRequires:  golang(github.com/cli/browser)
-BuildRequires:  golang(github.com/cli/oauth)
-BuildRequires:  golang(github.com/cli/safeexec)
-BuildRequires:  golang(github.com/cpuguy83/go-md2man/v2/md2man)
-BuildRequires:  golang(github.com/gabriel-vasile/mimetype)
-BuildRequires:  golang(github.com/google/shlex)
-BuildRequires:  golang(github.com/hashicorp/go-version)
-BuildRequires:  golang(github.com/henvic/httpretty)
-BuildRequires:  golang(github.com/itchyny/gojq)
-BuildRequires:  golang(github.com/kballard/go-shellquote)
-BuildRequires:  golang(github.com/MakeNowJust/heredoc)
-BuildRequires:  golang(github.com/mattn/go-colorable)
-BuildRequires:  golang(github.com/mattn/go-isatty)
-BuildRequires:  golang(github.com/mgutz/ansi)
-BuildRequires:  golang(github.com/muesli/reflow/ansi)
-BuildRequires:  golang(github.com/muesli/reflow/truncate)
-BuildRequires:  golang(github.com/muesli/termenv)
-BuildRequires:  golang(github.com/shurcooL/githubv4)
-BuildRequires:  golang(github.com/cli/shurcooL-graphql)
-BuildRequires:  golang(github.com/spf13/cobra)
-BuildRequires:  golang(github.com/spf13/pflag)
-BuildRequires:  golang(github.com/stretchr/testify/mock)
-BuildRequires:  golang(golang.org/x/crypto/nacl/box)
-BuildRequires:  golang(golang.org/x/sync/errgroup)
-BuildRequires:  golang(golang.org/x/term)
-BuildRequires:  golang(gopkg.in/yaml.v3)
-
-%if %{with check}
-# Tests
-BuildRequires:  golang(github.com/creack/pty)
-BuildRequires:  golang(github.com/google/go-cmp/cmp)
-BuildRequires:  golang(github.com/stretchr/testify/assert)
-BuildRequires:  golang(github.com/stretchr/testify/require)
-BuildRequires:  git
-%endif
+BuildRequires:  go-rpm-macros
 
 %description
 %{common_description}
@@ -69,11 +30,14 @@ BuildRequires:  git
 
 %prep
 %goprep
-find . -name "*.go" -type f -exec sed -i 's:shurcooL/graphql:cli/shurcooL-graphql:' '{}' \;
+#find . -name "*.go" -type f -exec sed -i 's:shurcooL/graphql:cli/shurcooL-graphql:' '{}' \;
+
+%generate_buildrequires
+%go_generate_buildrequires
 
 %build
-export LDFLAGS="-X github.com/cli/cli/internal/build.Version=2.0.0  \
-        -X github.com/cli/cli/internal/build.Date=2021-09-26"
+export LDFLAGS="-X github.com/cli/cli/internal/build.Version=2.3.0  \
+                -X github.com/cli/cli/internal/build.Date=2021-12-05"
 
 %gobuild -o %{gobuilddir}/cmd/%{name} %{goipath}/cmd/%{name}
 
@@ -115,6 +79,4 @@ install -Dp %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %gopkgfiles
 
 %changelog
-* Sun Sep 26 2021 Mikel Olasagasti Uranga <mikel@olasagasti.info> - 2.0.0-1
-- Initial package
-
+%autochangelog
