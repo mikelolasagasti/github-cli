@@ -51,10 +51,6 @@ BuildRequires:  golang(github.com/yuin/goldmark/testutil)
 %gocheck
 %endif
 
-%files
-%license LICENSE
-%doc README.md
-
 %gopkgfiles
 
 %changelog
