@@ -31,14 +31,13 @@ BuildRequires:  go-rpm-macros
 
 %prep
 %goprep
-#find . -name "*.go" -type f -exec sed -i 's:shurcooL/graphql:cli/shurcooL-graphql:' '{}' \;
 
 %generate_buildrequires
 %go_generate_buildrequires
 
 %build
-export LDFLAGS="-X github.com/cli/cli/internal/build.Version=2.3.0  \
-                -X github.com/cli/cli/internal/build.Date=2021-12-05"
+export LDFLAGS="-X github.com/cli/cli/v2/internal/build.Version=2.3.0-Fedora  \
+                -X github.com/cli/cli/v2/internal/build.Date=2021-12-06"
 
 %gobuild -o %{gobuilddir}/cmd/%{name} %{goipath}/cmd/%{name}
 
