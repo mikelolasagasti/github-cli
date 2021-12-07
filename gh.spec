@@ -7,13 +7,15 @@ Version:                2.3.0
 
 %gometa
 
+%global goname gh
+
 %global common_description %{expand:
 GitHub’s official command line tool.}
 
 %global golicenses      LICENSE
 %global godocs          README.md
 
-Name:           gh
+Name:           %{goname}
 Release:        %autorelease
 Summary:        GitHub’s official command line tool
 
@@ -48,8 +50,8 @@ export LDFLAGS="-X github.com/cli/cli/v2/internal/build.Version=2.3.0-Fedora  \
 
 %install
 %gopkginstall
-install -m 0755 -vd                     %{buildroot}%{_bindir}
-install -m 0755 -vp %{gobuilddir}/cmd/* %{buildroot}%{_bindir}/
+install -m 0755 -vd                           %{buildroot}%{_bindir}
+install -m 0755 -vp %{gobuilddir}/cmd/%{name} %{buildroot}%{_bindir}/
 
 install -Dp %{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
 install -Dp %{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
@@ -65,7 +67,7 @@ install -Dp %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %files
 %license LICENSE
 %doc README.md
-%{_bindir}/*
+%{_bindir}/%{name}
 %dir %{_datadir}/bash-completion
 %dir %{_datadir}/bash-completion/completions
 %{_datadir}/bash-completion/completions/%{name}
