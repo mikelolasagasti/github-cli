@@ -7,13 +7,15 @@ Version:                0.12.6
 
 %gometa
 
+%global goname gojq
+
 %global common_description %{expand:
 Pure Go implementation of jq.}
 
 %global golicenses      LICENSE
 %global godocs          CHANGELOG.md README.md
 
-Name:           gojq
+Name:           %{goname}
 Release:        %autorelease
 Summary:        Pure Go implementation of jq
 
@@ -39,8 +41,8 @@ BuildRequires:  go-rpm-macros
 
 %install
 %gopkginstall
-install -m 0755 -vd                     %{buildroot}%{_bindir}
-install -m 0755 -vp %{gobuilddir}/cmd/* %{buildroot}%{_bindir}/
+install -m 0755 -vd                           %{buildroot}%{_bindir}
+install -m 0755 -vp %{gobuilddir}/cmd/%{name} %{buildroot}%{_bindir}/
 
 %if %{with check}
 %check
@@ -50,7 +52,7 @@ install -m 0755 -vp %{gobuilddir}/cmd/* %{buildroot}%{_bindir}/
 %files
 %license LICENSE
 %doc CHANGELOG.md README.md
-%{_bindir}/*
+%{_bindir}/%{name}
 
 %gopkgfiles
 
