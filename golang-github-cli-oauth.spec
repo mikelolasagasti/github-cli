@@ -18,7 +18,7 @@ client apps.}
 
 Name:           %{goname}
 Release:        %autorelease
-Summary:        A library for performing OAuth Device flow and Web application flow in Go client apps
+Summary:        Library for performing OAuth Device and Web application flow
 
 License:        MIT
 URL:            %{gourl}
