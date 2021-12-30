@@ -38,8 +38,8 @@ BuildRequires:  go-rpm-macros
 %go_generate_buildrequires
 
 %build
-export LDFLAGS="-X github.com/cli/cli/v2/internal/build.Version=2.3.0-Fedora  \
-                -X github.com/cli/cli/v2/internal/build.Date=2021-12-06"
+export LDFLAGS="-X github.com/cli/cli/v2/internal/build.Version=2.4.0-Fedora  \
+                -X github.com/cli/cli/v2/internal/build.Date=2021-12-30"
 
 %gobuild -o %{gobuilddir}/cmd/%{name} %{goipath}/cmd/%{name}
 
@@ -60,8 +60,8 @@ install -Dp %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 %if %{with check}
 %check
-# skip two failing tests
-%gocheck -d internal/docs -d pkg/cmd/gist/shared
+# pkg/liveshare fails with golang-1.18
+%gocheck -d pkg/liveshare
 %endif
 
 %files
