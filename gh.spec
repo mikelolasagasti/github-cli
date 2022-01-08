@@ -2,16 +2,19 @@
 %bcond_without check
 
 # https://github.com/cli/cli
-%global goipath         github.com/cli/cli
+%global goipath         github.com/cli/cli/v2
 Version:                2.4.0
 
 %gometa
 
-%global goname gh
+%global goname          gh
 
 %global common_description %{expand:
 GitHub’s official command line tool.}
 
+%global godevelheader   %{expand:
+Obsoletes:              golang-github-cli-devel < 2.4.0-3
+}
 %global golicenses      LICENSE
 %global godocs          README.md
 
@@ -23,8 +26,10 @@ License:        MIT
 URL:            %{gourl}
 Source0:        %{gosource}
 
-BuildRequires:  git
+BuildRequires:  git-core
 BuildRequires:  go-rpm-macros
+
+Requires:       git-core
 
 %description
 %{common_description}
@@ -38,24 +43,33 @@ BuildRequires:  go-rpm-macros
 %go_generate_buildrequires
 
 %build
-export LDFLAGS="-X github.com/cli/cli/v2/internal/build.Version=2.4.0-Fedora  \
-                -X github.com/cli/cli/v2/internal/build.Date=2021-12-30"
+export LDFLAGS="-X github.com/cli/cli/v2/internal/build.Version=%{version}-Fedora  \
+                -X github.com/cli/cli/v2/internal/build.Date=$(date -d "@${SOURCE_DATE_EPOCH}" +%Y-%m-%d)"
+for cmd in cmd/%{name} cmd/gen-docs; do
+  %gobuild -o %{gobuilddir}/bin/$(basename $cmd) %{goipath}/$cmd
+done
 
-%gobuild -o %{gobuilddir}/cmd/%{name} %{goipath}/cmd/%{name}
+# Generate manpages
+%{gobuilddir}/bin/gen-docs --man-page --doc-path ./share/man/man1
 
-%{gobuilddir}/cmd/%{name} completion bash > %{name}.bash
-%{gobuilddir}/cmd/%{name} completion fish > %{name}.fish
-%{gobuilddir}/cmd/%{name} completion zsh  > %{name}.zsh
+# Generate shell completions
+%{gobuilddir}/bin/%{name} completion bash > %{name}.bash
+%{gobuilddir}/bin/%{name} completion fish > %{name}.fish
+%{gobuilddir}/bin/%{name} completion zsh  > %{name}.zsh
 
 
 %install
 %gopkginstall
-install -m 0755 -vd                           %{buildroot}%{_bindir}
-install -m 0755 -vp %{gobuilddir}/cmd/%{name} %{buildroot}%{_bindir}/
+# We are deliberately excluding cmd/gen-docs. It is only needed for building.
+install -Dpm 0755 %{gobuilddir}/bin/%{name} -t %{buildroot}%{_bindir}/
 
-install -Dp %{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
-install -Dp %{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
-install -Dp %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
+# Install manpages
+install -Dpm 0644 ./share/man/man1/%{name}*.1 -t %{buildroot}%{_mandir}/man1/
+
+# Install shell completions
+install -Dpm 0644 %{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
+install -Dpm 0644 %{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
+install -Dpm 0644 %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 
 
 %if %{with check}
@@ -68,6 +82,7 @@ install -Dp %{name}.zsh  %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
 %license LICENSE
 %doc README.md
 %{_bindir}/%{name}
+%{_mandir}/man1/%{name}*1*
 %dir %{_datadir}/bash-completion
 %dir %{_datadir}/bash-completion/completions
 %{_datadir}/bash-completion/completions/%{name}
