@@ -38,6 +38,8 @@ Requires:       git-core
 %prep
 %goprep
 
+sed -i "s|golang.org/x/crypto/ssh|github.com/cli/crypto/ssh|" $(find . -name "*.go" -type f)
+
 %generate_buildrequires
 %go_generate_buildrequires
 
