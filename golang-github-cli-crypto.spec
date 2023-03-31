@@ -32,7 +32,7 @@ Source:         %{gosource}
 %goprep
 %autopatch -p1
 
-rm -rf acme argon2 bcrypt blake2b blake2s blowfish bn256 cast5 chacha20 chacha20poly1305 cryptobyte curve25519 ed25519 hkdf md4 nacl ocsp openpgp otr pbkdf2 pkcs12 poly1305 ripemd160 salsa20 scrypt sha3 tea twofish xtea xts
+rm -rf acme argon2 bcrypt blake2b blake2s bn256 cast5 chacha20poly1305 cryptobyte hkdf md4 nacl ocsp openpgp otr pbkdf2 pkcs12 poly1305 ripemd160 salsa20 scrypt sha3 tea twofish xtea xts
 
 sed -i "s|golang.org/x/crypto|github.com/cli/crypto|" $(find . -name "*.go" -type f)
 
