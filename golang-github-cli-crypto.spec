@@ -10,7 +10,7 @@
 
 
 %global common_description %{expand:
-GitHub's golang-crypto fork.}
+GitHub's golang-crypto fork required for gh.}
 
 %global golicenses      PATENTS LICENSE
 %global godocs          AUTHORS CONTRIBUTING.md README.md CONTRIBUTORS
@@ -18,7 +18,7 @@ GitHub's golang-crypto fork.}
 Name:           %{goname}
 Version:        0
 Release:        %autorelease -p
-Summary:        GitHub's golang-crypto fork
+Summary:        GitHub's golang-crypto fork required for gh
 
 License:        BSD-3-Clause
 URL:            %{gourl}
@@ -32,8 +32,12 @@ Source:         %{gosource}
 %goprep
 %autopatch -p1
 
-rm -rf acme argon2 bcrypt blake2b blake2s bn256 cast5 chacha20poly1305 cryptobyte hkdf md4 nacl ocsp openpgp otr pbkdf2 pkcs12 poly1305 ripemd160 salsa20 scrypt sha3 tea twofish xtea xts
+# Remove unneeded modules for the usage of the fork
+rm -rf acme argon2 bcrypt blake2b blake2s bn256 cast5 chacha20poly1305 \
+       cryptobyte hkdf md4 nacl ocsp openpgp otr pbkdf2 pkcs12 poly1305 \
+       ripemd160 salsa20 scrypt sha3 tea twofish xtea xts
 
+# replace module name to avoid conflict
 sed -i "s|golang.org/x/crypto|github.com/cli/crypto|" $(find . -name "*.go" -type f)
 
 %generate_buildrequires
