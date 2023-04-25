@@ -3,7 +3,7 @@
 
 # https://github.com/cli/cli
 %global goipath         github.com/cli/cli/v2
-Version:                2.25.1
+Version:                2.28.0
 
 %gometa -f
 
@@ -39,6 +39,7 @@ Requires:       git-core
 %goprep
 
 # Use golang-github-cli-cyrpto forked module
+# https://github.com/cli/cli/issues/4731
 sed -i "s|golang.org/x/crypto|github.com/cli/crypto|" $(find . -name "*.go" -type f)
 sed -i "s|github.com/cli/crypto/nacl/box|golang.org/x/crypto/nacl/box|" $(find . -name "*.go" -type f)
 
