@@ -8,6 +8,8 @@ Version:                2.0.0
 
 %gometa -f
 
+%global goname golang-github-cli-gh
+
 %global common_description %{expand:
 A Go module for interacting with gh and the GitHub API from the command line.}
 
