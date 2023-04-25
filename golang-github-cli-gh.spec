@@ -3,12 +3,13 @@
 %global debug_package %{nil}
 
 # https://github.com/cli/go-gh
-%global goipath         github.com/cli/go-gh/v2
+%global goipath         github.com/cli/go-gh
 Version:                2.0.0
 
 %gometa -f
 
-%global goname golang-github-cli-gh
+
+%global goaltipaths     github.com/cli/go-gh/v2
 
 %global common_description %{expand:
 A Go module for interacting with gh and the GitHub API from the command line.}
