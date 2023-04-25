@@ -3,8 +3,8 @@
 %global debug_package %{nil}
 
 # https://github.com/cli/go-gh
-%global goipath         github.com/cli/go-gh
-Version:                1.2.1
+%global goipath         github.com/cli/go-gh/v2
+Version:                2.0.0
 
 %gometa -f
 
@@ -22,14 +22,13 @@ License:        MIT
 URL:            %{gourl}
 Source:         %{gosource}
 
-BuildRequires:  git-core
-
 %description %{common_description}
 
 %gopkg
 
 %prep
 %goprep
+%autopatch -p1
 
 %generate_buildrequires
 %go_generate_buildrequires
@@ -39,10 +38,6 @@ BuildRequires:  git-core
 
 %if %{with check}
 %check
-for test in "TestGQLClientDoWithContext" "TestRESTClientDoWithContext" "TestRESTClientRequestWithContext"\
-; do
-awk -i inplace '/^func.*'"$test"'\(/ { print; print "\tt.Skip(\"disabled failing test\")"; next}1' $(grep -rl $test)
-done
 %gocheck
 %endif
 
